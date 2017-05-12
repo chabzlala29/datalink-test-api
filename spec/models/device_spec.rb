@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Device, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { is_expected.to validate_presence_of(:device_mac) }
+  it { is_expected.to validate_presence_of(:serial_no) }
+  it { is_expected.to validate_presence_of(:name) }
 end
