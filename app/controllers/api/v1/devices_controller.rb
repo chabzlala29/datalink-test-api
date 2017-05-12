@@ -3,7 +3,7 @@ module Api
     class DevicesController < BaseController
       before_action :set_device, only: [:show, :update, :destroy]
       def index
-        @devices = Device.all
+        @devices = Device.ransack(params[:q]).result
         json_response(@devices)
       end
 

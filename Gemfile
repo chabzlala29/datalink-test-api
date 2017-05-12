@@ -8,6 +8,7 @@ end
 gem 'rails', '~> 5.0.1'
 gem 'pg', '~> 0.15'
 gem 'puma', '~> 3.0'
+gem 'ransack'
 
 group :development, :test do
   gem 'pry'

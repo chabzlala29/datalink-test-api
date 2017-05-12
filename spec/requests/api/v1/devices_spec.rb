@@ -2,14 +2,26 @@ require 'rails_helper'
 
 RSpec.describe 'Devices API', type: :request do
   let!(:devices) { create_list(:device, 10) }
-  let(:device_id) { devices.first.id }
+  let(:device_id) { device.id }
+  let(:device) { devices.first }
 
   describe 'GET /api/v1/devices' do
-    before { get '/api/v1/devices' }
+    let(:filters) { {} }
+    before { get '/api/v1/devices', params: { q: filters } }
 
     it 'returns devices' do
       expect(json).not_to be_empty
       expect(json.size).to eq 10
+    end
+
+    describe 'filters' do
+      let(:filters) { { name_cont: device.name } }
+
+      it 'returns correct record' do
+        result = json.first
+        expect(json.size).to eq 1
+        expect(result['id']).to eq device.id
+      end
     end
   end
 
